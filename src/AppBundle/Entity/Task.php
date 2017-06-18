@@ -58,6 +58,41 @@ class Task
     private $priority;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="tasks")
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Contact", inversedBy="tasks")
+     */
+    private $contact;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Courier", inversedBy="tasks")
+     */
+    private $courier;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Customer", inversedBy="tasks")
+     */
+    private $customer;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Product", inversedBy="task")
+     */
+    private $product;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Repairer", inversedBy="tasks")
+     */
+    private $repairer;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="WarrantyProvider", inversedBy="tasks")
+     */
+    private $warrantyProvider;
+
+    /**
      * @return string
      */
     public function getPriority()
@@ -77,14 +112,84 @@ class Task
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="tasks")
+     * @return Courier
      */
-    private $category;
+    public function getCourier()
+    {
+        return $this->courier;
+    }
 
     /**
-     * @ORM\ManyToOne(targetEntity="Contact", inversedBy="tasks")
+     * @param Courier $courier
      */
-    private $contact;
+    public function setCourier($courier)
+    {
+        $this->courier = $courier;
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param Customer $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    /**
+     * @param Product $product
+     */
+    public function setProduct($product)
+    {
+        $this->product = $product;
+    }
+
+    /**
+     * @return Repairer
+     */
+    public function getRepairer()
+    {
+        return $this->repairer;
+    }
+
+    /**
+     * @param Repairer $repairer
+     */
+    public function setRepairer($repairer)
+    {
+        $this->repairer = $repairer;
+    }
+
+    /**
+     * @return WarrantyProvider
+     */
+    public function getWarrantyProvider()
+    {
+        return $this->warrantyProvider;
+    }
+
+    /**
+     * @param WarrantyProvider $warrantyProvider
+     */
+    public function setWarrantyProvider($warrantyProvider)
+    {
+        $this->warrantyProvider = $warrantyProvider;
+    }
 
     public function getContact()
     {

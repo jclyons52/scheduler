@@ -17,7 +17,7 @@ sonata_block:
         #sonata.media.block.feature_media:
 
         # Some block with different templates
-        app.block.service.calendar:
+        app.block.service.calendar: ~
         #acme.demo.block.demo:
         #    templates:
         #       - { name: 'Simple', template: 'AcmeDemoBundle:Block:demo_simple.html.twig' }
@@ -28,30 +28,62 @@ twig:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
 
 services:
-    # ...
     admin.category:
         class: AppBundle\Admin\CategoryAdmin
         arguments: [~, AppBundle\Entity\Category, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Category }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Category }
 
     admin.task:
         class: AppBundle\Admin\TaskAdmin
         arguments: [~, AppBundle\Entity\Task, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Task }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Task }
 
     admin.contact:
         class: AppBundle\Admin\ContactAdmin
         arguments: [~, AppBundle\Entity\Contact, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Contact }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Contact }
+
+    app.admin.product:
+        class: AppBundle\Admin\ProductAdmin
+        arguments: [~, AppBundle\Entity\Product, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Product }
+
+    app.admin.warranty_provider:
+        class: AppBundle\Admin\WarrantyProviderAdmin
+        arguments: [~, AppBundle\Entity\WarrantyProvider, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: WarrantyProvider }
+
+
+    app.admin.repairer:
+        class: AppBundle\Admin\RepairerAdmin
+        arguments: [~, AppBundle\Entity\Repairer, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Repairer }
+
+
+    app.admin.courier:
+        class: AppBundle\Admin\CourierAdmin
+        arguments: [~, AppBundle\Entity\Courier, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Courier }
+
+    app.admin.customer:
+        class: AppBundle\Admin\CustomerAdmin
+        arguments: [~, AppBundle\Entity\Customer, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Customer }
 
     app.block.service.calendar:
         class: AppBundle\Block\CalendarBlock
         arguments:
             - app.block.service.calendar
             - "@templating"
+            - "@doctrine.orm.entity_manager"
         tags:
             - { name: sonata.block }
 
