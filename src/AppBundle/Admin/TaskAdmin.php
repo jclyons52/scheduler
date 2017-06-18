@@ -32,8 +32,8 @@ class TaskAdmin extends AbstractAdmin
                 )
             ))
             ->add('description', 'textarea')
-            ->add('startDate', 'datetime')
-            ->add('endDate', 'datetime')
+            ->add('startDate', 'sonata_type_datetime_picker')
+            ->add('endDate', 'sonata_type_datetime_picker')
             ->end()
             ->with('Meta data', ['class' => 'col-md-3'])
             ->add('category', 'sonata_type_model', [

@@ -20,4 +20,8 @@ services:
 
 sonata_admin:
     templates:
-        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        dashboard: SonataAdminBundle:Core:dashboard.html.twigp
+
+twig:
+    form_themes:
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
