@@ -1,3 +1,32 @@
+
+sonata_block:
+    default_contexts: [sonata_page_bundle]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+
+        sonata.block.service.text:
+        sonata.block.service.rss:
+
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
+
+        # Some block with different templates
+        app.block.service.calendar:
+        #acme.demo.block.demo:
+        #    templates:
+        #       - { name: 'Simple', template: 'AcmeDemoBundle:Block:demo_simple.html.twig' }
+        #       - { name: 'Big',    template: 'AcmeDemoBundle:Block:demo_big.html.twig' }
+
+twig:
+    form_themes:
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
+
 services:
     # ...
     admin.category:
@@ -18,10 +47,20 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label: Contact }
 
-sonata_admin:
-    templates:
-        dashboard: SonataAdminBundle:Core:dashboard.html.twigp
+    app.block.service.calendar:
+        class: AppBundle\Block\CalendarBlock
+        arguments:
+            - app.block.service.calendar
+            - "@templating"
+        tags:
+            - { name: sonata.block }
 
-twig:
-    form_themes:
-        - 'SonataCoreBundle:Form:datepicker.html.twig'
+sonata_admin:
+    dashboard:
+        blocks:
+            -
+                position: left
+                type: sonata.admin.block.admin_list
+            -
+                position: right
+                type: app.block.service.calendar
