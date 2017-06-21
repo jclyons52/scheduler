@@ -48,6 +48,13 @@ class Repairer
      */
     private $tasks;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
@@ -141,6 +148,18 @@ class Repairer
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
     }
 }
 

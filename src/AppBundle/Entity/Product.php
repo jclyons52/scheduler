@@ -48,9 +48,16 @@ class Product
     private $customer;
 
     /**
-     * @ORM\OneToOne(targetEntity="Task", inversedBy="product")
+     * @ORM\OneToOne(targetEntity="Task")
      */
     private $task;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="faultDescription", type="text")
+     */
+    private $faultDescription;
 
     /**
      * @return Task
@@ -165,6 +172,24 @@ class Product
     public function getPurchaseDate()
     {
         return $this->purchaseDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFaultDescription()
+    {
+        return $this->faultDescription;
+    }
+
+    /**
+     * @param string $faultDescription
+     */
+    public function setFaultDescription($faultDescription)
+    {
+        $this->faultDescription = $faultDescription;
+
+        return $this;
     }
 }
 

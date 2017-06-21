@@ -2,7 +2,7 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,14 +37,14 @@ class Task
     private $description;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="startDate", type="datetime")
      */
     private $startDate;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      *
      * @ORM\Column(name="endDate", type="datetime")
      */
@@ -58,267 +58,239 @@ class Task
     private $priority;
 
     /**
+     * @var Category
+     *
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="tasks")
      */
     private $category;
 
     /**
+     * @var Contact
+     *
      * @ORM\ManyToOne(targetEntity="Contact", inversedBy="tasks")
      */
     private $contact;
 
     /**
+     * @var Courier
+     *
      * @ORM\ManyToOne(targetEntity="Courier", inversedBy="tasks")
      */
     private $courier;
 
     /**
+     * @var Customer
+     *
      * @ORM\ManyToOne(targetEntity="Customer", inversedBy="tasks")
      */
     private $customer;
 
     /**
-     * @ORM\OneToOne(targetEntity="Product", inversedBy="task")
+     * @var Product
+     *
+     * @ORM\OneToOne(targetEntity="Product")
      */
     private $product;
 
     /**
+     * @var Repairer
+     *
      * @ORM\ManyToOne(targetEntity="Repairer", inversedBy="tasks")
      */
     private $repairer;
 
     /**
+     * @var WarrantyProvider
+     *
      * @ORM\ManyToOne(targetEntity="WarrantyProvider", inversedBy="tasks")
      */
     private $warrantyProvider;
 
     /**
-     * @return string
+     * @var string
+     *
+     * @ORM\Column(name="trackingNumber", type="string", length=255)
      */
-    public function getPriority()
+    private $trackingNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", columnDefinition="enum('inTransit','withRepairer','atHarveyNorman','readyToCollect')")
+     */
+    private $status;
+
+    public function getPriority(): ?string
     {
         return $this->priority;
     }
 
-    /**
-     * @param string $priority
-     * @return $this
-     */
-    public function setPriority($priority)
+    public function setPriority(string $priority): self
     {
         $this->priority = $priority;
 
         return $this;
     }
 
-    /**
-     * @return Courier
-     */
-    public function getCourier()
+    public function getCourier(): ?Courier
     {
         return $this->courier;
     }
 
-    /**
-     * @param Courier $courier
-     */
-    public function setCourier($courier)
+    public function setCourier(Courier $courier): self
     {
         $this->courier = $courier;
+
+        return $this;
     }
 
-    /**
-     * @return Customer
-     */
-    public function getCustomer()
+    public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
 
-    /**
-     * @param Customer $customer
-     */
-    public function setCustomer($customer)
+    public function setCustomer(Customer $customer): self
     {
         $this->customer = $customer;
+
+        return $this;
     }
 
-    /**
-     * @return Product
-     */
-    public function getProduct()
+    public function getProduct(): ?Product
     {
         return $this->product;
     }
 
-    /**
-     * @param Product $product
-     */
-    public function setProduct($product)
+    public function setProduct(Product $product): self
     {
         $this->product = $product;
+
+        return $this;
     }
 
-    /**
-     * @return Repairer
-     */
-    public function getRepairer()
+    public function getRepairer(): ?Repairer
     {
         return $this->repairer;
     }
 
-    /**
-     * @param Repairer $repairer
-     */
-    public function setRepairer($repairer)
+    public function setRepairer(Repairer $repairer): self
     {
         $this->repairer = $repairer;
+
+        return $this;
     }
 
-    /**
-     * @return WarrantyProvider
-     */
-    public function getWarrantyProvider()
+    public function getWarrantyProvider(): ?WarrantyProvider
     {
         return $this->warrantyProvider;
     }
 
-    /**
-     * @param WarrantyProvider $warrantyProvider
-     */
-    public function setWarrantyProvider($warrantyProvider)
+    public function setWarrantyProvider(WarrantyProvider $warrantyProvider): self
     {
         $this->warrantyProvider = $warrantyProvider;
+
+        return $this;
     }
 
-    public function getContact()
+    public function getContact(): ?Contact
     {
         return $this->contact;
     }
     
-    public function setContact(Contact $contact)
+    public function setContact(Contact $contact): self
     {
         $this->contact = $contact;
         
         return $this;
     }
 
-    public function setCategory(Category $category)
+    public function setCategory(Category $category): self
     {
         $this->category = $category;
         
         return $this;
     }
 
-    public function getCategory()
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
-    
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Set subject
-     *
-     * @param string $subject
-     *
-     * @return Task
-     */
-    public function setSubject($subject)
+    public function setSubject(string $subject): self
     {
         $this->subject = $subject;
 
         return $this;
     }
 
-    /**
-     * Get subject
-     *
-     * @return string
-     */
-    public function getSubject()
+    public function getSubject(): ?string
     {
         return $this->subject;
     }
 
-    /**
-     * Set description
-     *
-     * @param string $description
-     *
-     * @return Task
-     */
-    public function setDescription($description)
+    public function setDescription(string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    /**
-     * Get description
-     *
-     * @return string
-     */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    /**
-     * Set startDate
-     *
-     * @param \DateTime $startDate
-     *
-     * @return Task
-     */
-    public function setStartDate($startDate)
+    public function setStartDate(DateTime $startDate): self
     {
         $this->startDate = $startDate;
 
         return $this;
     }
 
-    /**
-     * Get startDate
-     *
-     * @return \DateTime
-     */
-    public function getStartDate()
+    public function getStartDate(): ?DateTime
     {
         return $this->startDate;
     }
 
-    /**
-     * Set endDate
-     *
-     * @param \DateTime $endDate
-     *
-     * @return Task
-     */
-    public function setEndDate($endDate)
+    public function setEndDate(DateTime $endDate): self
     {
         $this->endDate = $endDate;
 
         return $this;
     }
 
-    /**
-     * Get endDate
-     *
-     * @return \DateTime
-     */
-    public function getEndDate()
+    public function getEndDate(): ?DateTime
     {
         return $this->endDate;
+    }
+
+    public function getTrackingNumber(): ?string
+    {
+        return $this->trackingNumber;
+    }
+
+    public function setTrackingNumber(string $trackingNumber): self
+    {
+        $this->trackingNumber = $trackingNumber;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }
 

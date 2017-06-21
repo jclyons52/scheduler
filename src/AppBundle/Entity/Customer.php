@@ -54,12 +54,11 @@ class Customer
     private $products;
 
     /**
-     * @return mixed
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
      */
-    public function getProducts()
-    {
-        return $this->products;
-    }
+    private $address;
 
     public function __construct()
     {
@@ -67,94 +66,67 @@ class Customer
         $this->products = new ArrayCollection();
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getTasks()
+    public function getProducts(): ArrayCollection
+    {
+        return $this->products;
+    }
+
+    public function getTasks(): ArrayCollection
     {
         return $this->tasks;
     }
 
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Customer
-     */
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Customer
-     */
-    public function setEmail($email)
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * Set phoneNumber
-     *
-     * @param string $phoneNumber
-     *
-     * @return Customer
-     */
-    public function setPhoneNumber($phoneNumber)
+    public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
 
         return $this;
     }
 
-    /**
-     * Get phoneNumber
-     *
-     * @return string
-     */
-    public function getPhoneNumber()
+    public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
     }
 }
 
