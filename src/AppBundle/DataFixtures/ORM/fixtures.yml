@@ -1,0 +1,54 @@
+AppBundle\Entity\Customer:
+    customer_{1..10}:
+        name: <firstName()>
+        email: <email()>
+        phoneNumber: <phoneNumber()>
+        address: <address()>
+
+AppBundle\Entity\Product:
+    product_{1..10}:
+        name: <word()>
+        sku: <uuid()>
+        purchaseDate: <dateTime()>
+        faultDescription: <sentence()>
+        customer: '@customer_*'
+
+AppBundle\Entity\Category:
+    category_{1..10}:
+        name: <word()>
+
+AppBundle\Entity\Courier:
+    courier_{1..10}:
+        name: <word()>
+        email: <email()>
+        phoneNumber: <phoneNumber()>
+        
+AppBundle\Entity\Repairer:
+    repairer_{1..10}:
+        name: <firstName()>
+        email: <email()>
+        phoneNumber: <phoneNumber()>
+        address: <address()>
+        
+AppBundle\Entity\WarrantyProvider:
+    warrantyProvider_{1..10}:
+        name: <firstName()>
+        email: <email()>
+        phoneNumber: <phoneNumber()>
+        
+AppBundle\Entity\Task:
+    task_{1..10}:
+        subject: <word()>
+        description: <sentence()>
+        startDate: <dateTime()>
+        endDate: <dateTime()>
+        priority: '50%? high : low'
+        trackingNumber: <uuid()>
+        status: '50%? inTransit : readyToCollect'
+        category: '@category_*'
+        courier: '@courier_*'
+        customer: '@customer_*'
+        product: '@product_*'
+        repairer: '@repairer_*'
+        warrantyProvider: '@warrantyProvider_*'
+

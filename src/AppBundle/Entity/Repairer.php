@@ -44,16 +44,16 @@ class Repairer
     private $email;
 
     /**
-     * @ORM\OneToMany(targetEntity="Task", mappedBy="repairer")
-     */
-    private $tasks;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255)
      */
     private $address;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="repairer")
+     */
+    private $tasks;
 
     public function __construct()
     {

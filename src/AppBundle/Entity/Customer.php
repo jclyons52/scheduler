@@ -44,6 +44,13 @@ class Customer
     private $phoneNumber;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="string", length=255)
+     */
+    private $address;
+
+    /**
      * @ORM\OneToMany(targetEntity="Task", mappedBy="customer")
      */
     private $tasks;
@@ -52,13 +59,6 @@ class Customer
      * @ORM\OneToMany(targetEntity="Product", mappedBy="customer")
      */
     private $products;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=255)
-     */
-    private $address;
 
     public function __construct()
     {

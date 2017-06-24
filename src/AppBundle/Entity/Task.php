@@ -13,6 +13,19 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Task
 {
+    const PRIORITIES = [
+        'high' => 'high',
+        'medium' => 'medium',
+        'low' => 'low',
+    ];
+
+    const STATUSES = [
+        'inTransit' => 'In Transit',
+        'withRepairer' => 'With Repairer',
+        'atHarveyNorman' => 'At Harvey Norman',
+        'readyToCollect' => 'Ready To Collect',
+    ];
+
     /**
      * @var int
      *
@@ -56,6 +69,20 @@ class Task
      * @ORM\Column(name="priority", type="string", length=255)
      */
     private $priority;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="trackingNumber", type="string", length=255)
+     */
+    private $trackingNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", columnDefinition="enum('inTransit','withRepairer','atHarveyNorman','readyToCollect')")
+     */
+    private $status;
 
     /**
      * @var Category
@@ -105,20 +132,6 @@ class Task
      * @ORM\ManyToOne(targetEntity="WarrantyProvider", inversedBy="tasks")
      */
     private $warrantyProvider;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="trackingNumber", type="string", length=255)
-     */
-    private $trackingNumber;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string", columnDefinition="enum('inTransit','withRepairer','atHarveyNorman','readyToCollect')")
-     */
-    private $status;
 
     public function getPriority(): ?string
     {
@@ -196,18 +209,18 @@ class Task
     {
         return $this->contact;
     }
-    
+
     public function setContact(Contact $contact): self
     {
         $this->contact = $contact;
-        
+
         return $this;
     }
 
     public function setCategory(Category $category): self
     {
         $this->category = $category;
-        
+
         return $this;
     }
 

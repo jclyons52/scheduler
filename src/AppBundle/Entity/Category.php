@@ -35,6 +35,9 @@ class Category
     */
     private $tasks;
 
+    /**
+     * Category constructor.
+     */
     public function __construct()
     {
         $this->tasks = new ArrayCollection();

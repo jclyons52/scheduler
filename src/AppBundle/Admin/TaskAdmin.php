@@ -33,20 +33,11 @@ class TaskAdmin extends AbstractAdmin
             ->add('startDate', 'sonata_type_datetime_picker')
             ->add('endDate', 'sonata_type_datetime_picker')
             ->add('description', 'textarea')
-            ->add('priority', 'choice',  array(
-                'choices' => array(
-                    'high' => 'high',
-                    'medium' => 'medium',
-                    'low' => 'low',
-                )
-            ))
+            ->add('priority', 'choice',  [
+                'choices' => Task::PRIORITIES
+            ])
             ->add('status', 'choice', [
-                'choices' => [
-                    'In Transit' => 'inTransit',
-                    'With Repairer' => 'withRepairer',
-                    'At Harvey Norman' => 'atHarveyNorman',
-                    'Ready To Collect' => 'readyToCollect'
-                ]
+                'choices' => array_flip(Task::STATUSES)
             ])
             ->add('contact', 'sonata_type_model', [
                 'class' => Contact::class,
