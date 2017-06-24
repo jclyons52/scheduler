@@ -28,7 +28,26 @@ class TaskAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form
-            ->with('Content', ['class' => 'col-md-9'])
+            ->with('Content', ['class' => 'col-md-12'])
+            ->add('subject', 'text')
+            ->add('startDate', 'sonata_type_datetime_picker')
+            ->add('endDate', 'sonata_type_datetime_picker')
+            ->add('description', 'textarea')
+            ->add('priority', 'choice',  array(
+                'choices' => array(
+                    'high' => 'high',
+                    'medium' => 'medium',
+                    'low' => 'low',
+                )
+            ))
+            ->add('status', 'choice', [
+                'choices' => [
+                    'In Transit' => 'inTransit',
+                    'With Repairer' => 'withRepairer',
+                    'At Harvey Norman' => 'atHarveyNorman',
+                    'Ready To Collect' => 'readyToCollect'
+                ]
+            ])
             ->add('contact', 'sonata_type_model', [
                 'class' => Contact::class,
                 'property' => 'name',
@@ -50,19 +69,6 @@ class TaskAdmin extends AbstractAdmin
                 'class'    => WarrantyProvider::class,
                 'property' => 'name',
             ))
-            ->add('subject', 'text')
-            ->add('priority', 'choice',  array(
-                'choices' => array(
-                    'high' => 'high',
-                    'medium' => 'medium',
-                    'low' => 'low',
-                )
-            ))
-            ->add('description', 'textarea')
-            ->add('startDate', 'sonata_type_datetime_picker')
-            ->add('endDate', 'sonata_type_datetime_picker')
-            ->end()
-            ->with('Meta data', ['class' => 'col-md-3'])
             ->add('category', 'sonata_type_model', [
                 'class' => Category::class,
                 'property' => 'name',
@@ -71,7 +77,6 @@ class TaskAdmin extends AbstractAdmin
                 'class'    => Customer::class,
                 'property' => 'name',
             ))
-
             ->end();
         ;
     }
