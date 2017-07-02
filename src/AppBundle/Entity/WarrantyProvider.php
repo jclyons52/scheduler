@@ -151,5 +151,11 @@ class WarrantyProvider
     {
         return $this->phoneNumber;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
 }
 

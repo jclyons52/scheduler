@@ -143,8 +143,13 @@ class TaskAdmin extends AbstractAdmin
             ->add('subject')
             ->add('startDate')
             ->add('endDate')
-            ->add('category.name')
-            ->add('contact.name')
+            ->add('contact')
+            ->add('courier')
+            ->add('product')
+            ->add('repairer')
+            ->add('warrantyProvider')
+            ->add('category')
+            ->add('customer')
         ;
     }
 
