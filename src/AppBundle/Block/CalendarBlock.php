@@ -55,7 +55,7 @@ class CalendarBlock extends AbstractBlockService
             'title' => $task->getSubject(),
             'start' => $task->getStartDate()->format('Y-m-d'),
             'description' => $task->getDescription(),
-            'end' => $task->getendDate()->format('Y-m-d'),
+            'end' => $task->getEndDate()->format('Y-m-d'),
             'url' => "/admin/app/task/".$task->getId()."/show"
         ];}, $tasks);
 

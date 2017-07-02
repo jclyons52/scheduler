@@ -307,7 +307,7 @@ class Task
     }
     public function __toString()
     {
-        return $this->subject;
+        return (string) $this->subject;
     }
 
 }
