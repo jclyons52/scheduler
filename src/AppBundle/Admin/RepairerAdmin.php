@@ -19,6 +19,7 @@ class RepairerAdmin extends AbstractAdmin
             ->add('name')
             ->add('phoneNumber')
             ->add('email')
+            ->add('address')
         ;
     }
 
@@ -50,6 +51,7 @@ class RepairerAdmin extends AbstractAdmin
             ->add('name')
             ->add('phoneNumber')
             ->add('email')
+            ->add('address')
         ;
     }
 
@@ -62,6 +64,7 @@ class RepairerAdmin extends AbstractAdmin
             ->add('name')
             ->add('phoneNumber')
             ->add('email')
+            ->add('address')
         ;
     }
 }
