@@ -30,9 +30,10 @@ class TaskAdmin extends AbstractAdmin
         $form
             ->with('Content', ['class' => 'col-md-12'])
             ->add('subject', 'text')
-            ->add('startDate', 'sonata_type_datetime_picker')
-            ->add('endDate', 'sonata_type_datetime_picker')
+            ->add('startDate', 'sonata_type_datetime_picker', ['format'=>'dd/MM/yyyy'])
+            ->add('endDate', 'sonata_type_datetime_picker', ['format'=>'dd/MM/yyyy'])
             ->add('description', 'textarea')
+            ->add('trackingNumber')
             ->add('priority', 'choice',  [
                 'choices' => Task::PRIORITIES
             ])

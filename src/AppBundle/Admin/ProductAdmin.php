@@ -56,7 +56,7 @@ class ProductAdmin extends AbstractAdmin
         $formMapper
             ->add('name')
             ->add('sku')
-            ->add('purchaseDate', 'sonata_type_date_picker')
+            ->add('purchaseDate', 'sonata_type_date_picker', ['format'=>'dd/MM/yyyy'])
             ->add('customer', 'sonata_type_model', array(
                 'class'    => Customer::class,
                 'property' => 'name',
