@@ -20,6 +20,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('name')
             ->add('sku')
             ->add('purchaseDate')
+            ->add('faultDescription')
             ->add('customer', null, array(), 'entity', array(
                 'class'    => Customer::class,
                 'choice_label' => 'name',
@@ -60,6 +61,7 @@ class ProductAdmin extends AbstractAdmin
                 'class'    => Customer::class,
                 'property' => 'name',
             ))
+            ->add('faultDescription')
         ;
     }
 
@@ -72,6 +74,7 @@ class ProductAdmin extends AbstractAdmin
             ->add('name')
             ->add('sku')
             ->add('purchaseDate')
+            ->add('faultDescription')
         ;
     }
 }
