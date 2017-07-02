@@ -19,6 +19,7 @@ class CustomerAdmin extends AbstractAdmin
             ->add('name')
             ->add('email')
             ->add('phoneNumber')
+            ->add('address')
         ;
     }
 
@@ -50,6 +51,7 @@ class CustomerAdmin extends AbstractAdmin
             ->add('name')
             ->add('email')
             ->add('phoneNumber')
+            ->add('address')
         ;
     }
 
@@ -62,6 +64,7 @@ class CustomerAdmin extends AbstractAdmin
             ->add('name')
             ->add('email')
             ->add('phoneNumber')
+            ->add('address')
         ;
     }
 }
